@@ -1,3 +1,4 @@
+require('dotenv').config();
 let express = require('express')
 let ejsLayouts = require('express-ejs-layouts')
 let db = require('./models')

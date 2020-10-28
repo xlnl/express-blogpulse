@@ -5,6 +5,12 @@
 </p>
 
 <p><%= article.content %></p>
+<p><% article.comments.forEach(comment => { %>
+  <%= comment.name %>
+  <br>
+  <%= comment.content %>
+<% }); %>
+
 
 <hr />
 
