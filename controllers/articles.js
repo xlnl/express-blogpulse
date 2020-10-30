@@ -28,7 +28,24 @@ router.get('/new', (req, res) => {
   })
 })
 
-// GET /articles/:id - display a specific post and its author
+// post route for creating comments
+router.post('/:id', (req, res) => {
+  let articleId = req.params.id;
+  console.log(req.body);
+  db.comment.create({
+    name: req.body.name,
+    content: req.body.content,
+    articleId: articleId
+  })
+  .then(() => {
+    res.redirect(`/articles/${articleId}`)
+  }).catch(error => {
+    console.log(error)
+    res.status(400).render('main/404')
+  })
+})
+
+// GET /articles/:id - display a specific post and its author + comments!
 router.get('/:id', (req, res) => {
   db.article.findOne({
     where: { id: req.params.id },
@@ -37,6 +54,7 @@ router.get('/:id', (req, res) => {
   .then((article) => {
     if (!article) throw Error()
     console.log(article.author)
+    console.log(article.comments)
     res.render('articles/show', { article: article })
   })
   .catch((error) => {
@@ -44,5 +62,6 @@ router.get('/:id', (req, res) => {
     res.status(400).render('main/404')
   })
 })
+
 
 module.exports = router

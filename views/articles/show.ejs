@@ -5,13 +5,35 @@
 </p>
 
 <p><%= article.content %></p>
-<p><% article.comments.forEach(comment => { %>
-  <%= comment.name %>
-  <br>
-  <%= comment.content %>
-<% }); %>
 
+<h4>Comments</h4>
+<% if(article.comments.length > 0) { %>
+  <% article.comments.forEach(comment => { %>
+    <div class="well">
+      <p><strong><%= comment.name %> says:</strong></p>
+      <p><%= comment.content %></p>
+    </div>
+  <% }); %>
+<% } %>
 
 <hr />
+
+<!-- comment form here -->
+<h5>Comment here:</h5>
+
+<form action="/articles/<%=article.id %>" method="POST">
+  <div class="form-group">
+    <label for="commenter">Name</label>
+    <input type="text" class="form-control" id="commenter" name="name" required>
+  </div>
+
+  <div class="form-group">
+    <label for="content">Content</label>
+    <textarea type="text" class="form-control" id="content" name="content" required></textarea>
+  </div>
+
+  <input type="submit" class="btn btn-primary" value="Comment">
+</form>
+
 
 <a href="/">&larr; Back Home</a>
