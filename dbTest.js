@@ -1,7 +1,6 @@
 var db = require('./models')
 const article = require('./models/article')
 
-
 // db.comment.create({
 //     name: 'Allen Paul',
 //     content: 'Terrible!',
@@ -9,8 +8,6 @@ const article = require('./models/article')
 // }).then(comment=>{
 //     console.log("here's the comment:", comment.get())
 // })
-
-
 
 db.article.findOne({
   where: { id: 1 },

@@ -29,7 +29,7 @@ router.get('/new', (req, res) => {
 })
 
 // post route for creating comments
-router.post('/:id', (req, res) => {
+router.post('/:id/comments', (req, res) => {
   let articleId = req.params.id;
   console.log(req.body);
   db.comment.create({
